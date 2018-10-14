@@ -9,13 +9,13 @@ class TableRow extends Component {
     super(props);
     this.state = {
       status : this.props.task.status,
-      task : this.props.task.taskName,
-      priority : this.props.task.priority,
     }
+
+     this.clicked = this.clicked.bind(this);
     
   }
 
-  clicked = () => {
+  clicked(){
     this.setState({status : !this.state.status})
     console.log(this.state.status)
   }
