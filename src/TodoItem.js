@@ -3,11 +3,26 @@ import React, { Component } from "react";
 import "./App.css";
 
 class TableRow extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      done: props.task.done
+    };
+
+    this.toggleStatus = this.toggleStatus.bind(this);
+  }
+
+  toggleStatus() {
+    const newStatus = !this.state.done;
+    this.setState({ done: newStatus });
+  }
+
   render() {
     const task = this.props.task;
+    const deleteTask = this.props.deleteTask;
 
     const statusIcon = () => {
-      if (task.done) {
+      if (this.state.done) {
         return "fa fa-check-circle";
       } else {
         return "fa fa-times-circle";
@@ -17,12 +32,12 @@ class TableRow extends Component {
     return (
       <tr className="row">
         <td>
-          <i className={statusIcon()} />
+          <i className={statusIcon()} onClick={this.toggleStatus} />
         </td>
         <td>{task.task}</td>
         <td className={task.priority}>{task.priority.toUpperCase()}</td>
         <td>
-          <i className="fa fa-times" />
+          <i className="fa fa-times" onClick={() => deleteTask(task.id)} />
         </td>
       </tr>
     );

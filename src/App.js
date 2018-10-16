@@ -14,13 +14,11 @@ class App extends Component {
       tasks: tasks
     };
 
-    this.toggleStatus = this.toggleStatus.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
   }
 
-  toggleStatus(id) {
-    const tasks = this.state.tasks;
-    const task = tasks.find(task => task.id === id);
-    task.done = !task.done;
+  deleteTask(id) {
+    const tasks = this.state.tasks.filter(task => task.id !== id);
     this.setState({ tasks: tasks });
   }
 
@@ -28,7 +26,7 @@ class App extends Component {
     return (
       <div className="rectangle">
         <p className="title">TO DO LIST</p>
-        <TodoList tasks={tasks} toggleStatus={this.toggleStatus} />
+        <TodoList tasks={this.state.tasks} deleteTask={this.deleteTask} />
       </div>
     );
   }

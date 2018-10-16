@@ -10,7 +10,7 @@ class TodoList extends Component {
       <TodoItem
         task={task}
         key={task.task}
-        toggleStatus={this.props.toggleStatus}
+        deleteTask={this.props.deleteTask}
       />
     ));
 
