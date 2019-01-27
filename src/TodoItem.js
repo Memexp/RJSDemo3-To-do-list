@@ -3,19 +3,14 @@ import React, { Component } from "react";
 import "./App.css";
 
 class TableRow extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      done: props.task.done
-    };
+  state = {
+    done: this.props.task.done
+  };
 
-    this.toggleStatus = this.toggleStatus.bind(this);
-  }
-
-  toggleStatus() {
+  toggleStatus = () => {
     const newStatus = !this.state.done;
     this.setState({ done: newStatus });
-  }
+  };
 
   render() {
     const task = this.props.task;

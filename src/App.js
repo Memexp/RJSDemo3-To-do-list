@@ -8,19 +8,14 @@ import tasks from "./data";
 import TodoList from "./TodoList";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasks: tasks
-    };
+  state = {
+    tasks: tasks
+  };
 
-    this.deleteTask = this.deleteTask.bind(this);
-  }
-
-  deleteTask(id) {
+  deleteTask = id => {
     const tasks = this.state.tasks.filter(task => task.id !== id);
     this.setState({ tasks: tasks });
-  }
+  };
 
   render() {
     return (
