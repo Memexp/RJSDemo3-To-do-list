@@ -15,13 +15,13 @@ let tasks = [
     id: 3,
     task: "Call Mom",
     done: false,
-    priority: "low"
+    priority: "high"
   },
   {
     id: 4,
     task: "Study for test",
     done: true,
-    priority: "high"
+    priority: "low"
   }
 ];
 
