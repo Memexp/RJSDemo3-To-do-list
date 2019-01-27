@@ -6,46 +6,37 @@
 <i className={statIcon()} onClick={() => alert("CHANGE STATUS")} />
 ```
 
-2. create a constructer and create a method with an alert and call this method in the onClick instead
+2. Add a method with an alert and call this method in the onClick:
 
 ```javascript
-constructor(props) {
-super(props)
-this.toggleStatus = this.toggleStatus.bind(this);
-}
-
 ...
-toggleStatus(){
-  alert('CHANGE STATUS')
-}
+toggleStatus = () => alert('CHANGE STATUS');
 
 ...
 
 <i className={statIcon()} onClick={this.toggleStatus} />
 ```
 
-3. add a state using the values of the props.task
+3. add a state using the values of the `props.task`
 
 ```javascript
-constructor(props) {
-  ...
-  this.state = {
-    done: props.task.done
-  }
-  ...
+...
+state = {
+  done: props.task.done
 }
+...
 ```
 
 4. change the value (toggle) of the status state in the previously created function.
 
 ```javascript
-toggleStatus() {
+toggleStatus = () => {
   const newStatus = !this.state.done;
-  this.setState({done: newStatus});
-}
+  this.setState({ done: newStatus });
+};
 ```
 
-5. change the used status in the render function from props to state
+5. change the status in the render function from props to state
 
 ```javascript
 render(){
@@ -69,14 +60,12 @@ render(){
 <i className="fa fa-times" onClick={() => alert(`DELETE task #${task.id}`)} />
 ```
 
-2. Discuss why this component cannot delete itself.
+2. Discuss why this component cannot delete itself. The button is on the component but the list of tasks is actually in the App.
 
 3. In `App.js`, add a method that recieves an `id` and alerts it
 
 ```javascript
-deleteTask(id) {
-  alert(`DELETE task #${id}`)
-}
+deleteTask = id => alert(`DELETE task #${id}`);
 ```
 
 4. Pass this method down through `TodoList` to `TodoItem` as a prop
@@ -95,7 +84,7 @@ let taskRows = this.props.tasks.map(task => (
 ));
 ```
 
-5. Replace the alert with this method
+5. Replace the alert with this method. Explain why we have to wrap it in an anonymous function because we're passing it a value.
 
 `TodoItem.js`
 
@@ -103,13 +92,13 @@ let taskRows = this.props.tasks.map(task => (
 <i className="fa fa-times" onClick={() => deleteTask(task.id)} />
 ```
 
-6. Rewrite `deleteTask` to actually modify state (don't forget to bind)
+6. Rewrite `deleteTask` to actually modify state
 
 `App.js`
 
 ```javascript
-deleteTask(id) {
+deleteTask = id => {
   const tasks = this.state.tasks.filter(task => task.id !== id);
   this.setState({ tasks: tasks });
-}
+};
 ```
